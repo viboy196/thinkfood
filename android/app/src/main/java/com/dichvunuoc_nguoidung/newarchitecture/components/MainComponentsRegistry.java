@@ -1,4 +1,4 @@
-package com.dichvunuoc_nguoidung.newarchitecture.components;
+package com.thinkfood_vn.newarchitecture.components;
 
 import com.facebook.jni.HybridData;
 import com.facebook.proguard.annotations.DoNotStrip;

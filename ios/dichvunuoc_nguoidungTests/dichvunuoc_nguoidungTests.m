@@ -7,11 +7,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React"
 
-@interface dichvunuoc_nguoidungTests : XCTestCase
+@interface thinkfood_vnTests : XCTestCase
 
 @end
 
-@implementation dichvunuoc_nguoidungTests
+@implementation thinkfood_vnTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL (^)(UIView *view))test
 {

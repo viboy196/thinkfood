@@ -52,9 +52,8 @@ const Input = (props: {
           style={{
             padding: 5,
             fontSize: 18,
-          }}
-          darkColor="#000"
-          lightColor="#000">
+            color: '#95bc13',
+          }}>
           {title}
         </Text>
         <View

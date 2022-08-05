@@ -1,4 +1,4 @@
-package com.dichvunuoc_nguoidung.newarchitecture;
+package com.thinkfood_vn.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.fabric.ReactNativeConfig;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.dichvunuoc_nguoidung.BuildConfig;
-import com.dichvunuoc_nguoidung.newarchitecture.components.MainComponentsRegistry;
-import com.dichvunuoc_nguoidung.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.thinkfood_vn.BuildConfig;
+import com.thinkfood_vn.newarchitecture.components.MainComponentsRegistry;
+import com.thinkfood_vn.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

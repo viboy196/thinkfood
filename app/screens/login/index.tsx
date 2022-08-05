@@ -3,6 +3,7 @@ import {
   Alert,
   Image,
   ImageBackground,
+  Linking,
   ScrollView,
   StyleSheet,
   TouchableOpacity,
@@ -13,6 +14,7 @@ import Button from '../../components/items/Button';
 import Input from '../../components/items/InputForm';
 import {View, Text} from '../../components/Themed';
 import {tintColorLight} from '../../constants/Colors';
+import Layout from '../../constants/Layout';
 import {RootStackScreenProps} from '../../navigation/types';
 import {
   loginAsync,
@@ -22,7 +24,7 @@ import {
 import {useAppDispatch, useAppSelector} from '../../redux/store/hooks';
 import {validatePassword, validatePhoneNumber} from '../../utils/validate';
 
-export default function Login({navigation}: RootStackScreenProps<'Login'>) {
+export default function Login({}: RootStackScreenProps<'Login'>) {
   const {loading, errorMessage, checkedAuth, userName, password} =
     useAppSelector(state => state.auth);
   console.log(errorMessage);
@@ -81,21 +83,25 @@ export default function Login({navigation}: RootStackScreenProps<'Login'>) {
       )}
       <ScrollView style={styles.container}>
         <ImageBackground
-          source={require('../../assets/images/water.jpg')}
+          source={require('../../assets/images/thinkfoodbg.png')}
           resizeMode="cover"
           style={styles.backgroundImage}>
           <View style={styles.header}>
+            <View style={{flex: 1}} />
             <Image
-              source={require('../../assets/images/dichvunuoc.png')}
+              source={require('../../assets/images/thinkfoodlogo.png')}
               resizeMode="cover"
               style={styles.logoImage}
             />
-            <Text style={styles.logoText}> DỊCH VỤ NƯỚC </Text>
+            <Text style={styles.logoText}>
+              {' '}
+              Gặp lại hương vị cũ - Tìm về kỷ niệm xưa.{' '}
+            </Text>
           </View>
           <View style={styles.body}>
             <View style={styles.fromInput}>
               <Input
-                title={'số điện thoại hoặc mã khách hàng'}
+                title={'Số điện thoại'}
                 value={textPhone}
                 keyboardType={'numeric'}
                 onChangeInput={(text: string) => {
@@ -113,6 +119,7 @@ export default function Login({navigation}: RootStackScreenProps<'Login'>) {
               <Input
                 title={'Mật khẩu'}
                 value={textPassword}
+                keyboardType={'visible-password'}
                 onChangeInput={(text: string) => {
                   console.log(text);
                   setTextPassword(text);
@@ -134,7 +141,8 @@ export default function Login({navigation}: RootStackScreenProps<'Login'>) {
                   onPress={() => {
                     setChecked(!checked);
                   }}
-                  color={'#3e3e3e'}
+                  color={tintColorLight}
+                  uncheckedColor={tintColorLight}
                 />
                 <Text style={styles.textInfoCheckBox}>Nhớ thông tin</Text>
               </View>
@@ -155,119 +163,42 @@ export default function Login({navigation}: RootStackScreenProps<'Login'>) {
                     validatePhoneNumber(textPhone) &&
                     validatePassword(textPassword)
                   ) {
-                    dispatch(
-                      setStateAuthRemember({
-                        input: {
-                          loading: 'idle',
-                          checkedAuth: checked,
-                          userName: textPhone,
-                          password: textPassword,
-                        },
-                      }),
-                    );
+                    // dispatch(
+                    //   setStateAuthRemember({
+                    //     input: {
+                    //       loading: 'idle',
+                    //       checkedAuth: checked,
+                    //       userName: textPhone,
+                    //       password: textPassword,
+                    //     },
+                    //   }),
+                    // );
 
-                    dispatch(
-                      loginAsync({phone: textPhone, password: textPassword}),
-                    );
+                    Alert.alert('thông báo ', 'Đang phát triển');
+                    // dispatch(
+                    //   loginAsync({phone: textPhone, password: textPassword}),
+                    // );
                   }
                 }}>
                 <Text style={styles.btnLoginText}>Đăng nhập</Text>
               </TouchableOpacity>
             </View>
-            <View style={styles.viewInfo}>
-              <TouchableOpacity
-                style={styles.viewTextInfo}
+            <View style={{flex: 1, alignItems: 'center', padding: 15}}>
+              <Button
+                iconName="facebook"
+                BackgroundColor="rgba(0, 132, 255,0.8)"
                 onPress={() => {
-                  navigation.navigate('Register');
-                }}>
-                <Text style={styles.textInfo}>Chưa có tài khoản</Text>
-              </TouchableOpacity>
-              <View style={styles.empty} />
-              <TouchableOpacity
-                style={styles.viewTextInfo}
-                onPress={() => {
-                  navigation.navigate('forgotpassword');
-                }}>
-                <Text style={styles.textInfo}>Quên mật khẩu</Text>
-              </TouchableOpacity>
+                  Linking.openURL('https://www.facebook.com/thinkfood.vn');
+                }}
+              />
             </View>
-            <View style={styles.viewInfo}>
-              <TouchableOpacity
-                style={styles.viewTextInfo}
-                onPress={() => {
-                  navigation.navigate('supportRegister');
-                }}>
-                <Text style={styles.textInfo}>Hướng dẫn đăng nhập</Text>
-              </TouchableOpacity>
-              <View style={styles.empty} />
-            </View>
-            <View style={styles.viewButtonInfo}>
-              <View style={styles.viewButtonItem}>
-                <Button
-                  iconName="app-registration"
-                  BackgroundColor={tintColorLight}
-                  onPress={() => {
-                    navigation.navigate('InstallWaterScreen');
-                  }}
-                />
-                <View style={styles.viewButtonItemText}>
-                  <Text>Gửi yêu cầu</Text>
-                  <Text>lắp nước</Text>
-                </View>
-              </View>
-              <View style={styles.viewButtonItem}>
-                <Button
-                  iconName="handyman"
-                  BackgroundColor={tintColorLight}
-                  image={require('../../assets/images/search/process.png')}
-                  onPress={() => {
-                    navigation.navigate('ViewProcessScreen');
-                  }}
-                />
-                <View style={styles.viewButtonItemText}>
-                  <Text>Xem thủ tục</Text>
-                  <Text>Cấp nước</Text>
-                </View>
-              </View>
-              <View style={styles.viewButtonItem}>
-                <Button
-                  iconName="handyman"
-                  BackgroundColor={tintColorLight}
-                  image={require('../../assets/images/search/job-search.png')}
-                  onPress={() => {
-                    navigation.navigate('MyWebView', {
-                      title: 'Tra cứu Tiến độ hồ sơ',
-                      url: 'http://dichvunuoc.vn/show/dvn_mobile_dangky_tiendo',
-                    });
-                  }}
-                />
-                <View style={styles.viewButtonItemText}>
-                  <Text>Tra cứu tiến</Text>
-                  <Text>độ hồ sơ</Text>
-                </View>
-              </View>
-              <View style={styles.viewButtonItem}>
-                <Button
-                  iconName="phone"
-                  BackgroundColor={tintColorLight}
-                  onPress={() => {
-                    Alert.alert('Tổng đài CSKH', '1900 400 002');
-                  }}
-                />
-                <View style={styles.viewButtonItemText}>
-                  <Text>Liên hệ</Text>
-                </View>
-              </View>
-              {/* <View style={styles.viewButtonItem}>
-                <Button
-                  iconName="share"
-                  BackgroundColor={tintColorLight}
-                  onPress={onShare}
-                />
-                <View style={styles.viewButtonItemText}>
-                  <Text>Chia sẻ</Text>
-                </View>
-              </View> */}
+            <View
+              style={{
+                width: '100%',
+                alignItems: 'center',
+                marginBottom: 5,
+              }}>
+              <Text style={{color: tintColorLight}}>© Thinkfood 2022 </Text>
             </View>
           </View>
         </ImageBackground>
@@ -284,22 +215,23 @@ const styles = StyleSheet.create({
     color: '#FFF',
   },
   backgroundImage: {
-    flex: 1,
-    height: '100%',
+    width: Layout.window.width,
+
+    height: Layout.window.height,
     alignItems: 'center',
     backgroundColor: 'red',
   },
   empty: {flex: 1},
   header: {
-    flex: 2,
+    flex: 3,
     marginTop: 20,
     width: '100%',
     alignItems: 'center',
   },
-  logoImage: {width: 100, height: 100},
+  logoImage: {width: 150, height: 150},
   logoText: {
     marginTop: 5,
-    fontSize: 28,
+    fontSize: 18,
     fontWeight: '800',
     color: '#fff',
     textShadowOffset: {width: 2, height: 2},
@@ -308,7 +240,6 @@ const styles = StyleSheet.create({
   },
   body: {
     flex: 5,
-    backgroundColor: '#fff',
     width: '100%',
     borderTopLeftRadius: 35,
     borderTopRightRadius: 35,
@@ -319,7 +250,8 @@ const styles = StyleSheet.create({
   },
   viewInfo: {
     flexDirection: 'row',
-    marginVertical: 10,
+    marginLeft: 12,
+    marginBottom: 10,
   },
   textInfo: {
     color: tintColorLight,
@@ -355,7 +287,7 @@ const styles = StyleSheet.create({
   viewTextInfo: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginHorizontal: 10,
+    marginHorizontal: 12,
   },
   viewButtonInfo: {
     flexDirection: 'row',

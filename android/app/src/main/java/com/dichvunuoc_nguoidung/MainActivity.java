@@ -1,4 +1,4 @@
-package com.dichvunuoc_nguoidung;
+package com.thinkfood_vn;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
@@ -12,7 +12,7 @@ public class MainActivity extends ReactActivity {
    */
   @Override
   protected String getMainComponentName() {
-    return "dichvunuoc_nguoidung";
+    return "thinkfood_vn";
   }
 
   /**
